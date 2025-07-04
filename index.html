@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Flor Mandala - Laura</title>
+  <style>
+    body {
+      background-color: #000;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      overflow: hidden;
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .marquee-container {
+      width: 100%;
+      height: 60px;
+      overflow: hidden;
+      position: absolute;
+      background: transparent;
+      z-index: 10;
+    }
+
+    .marquee-top {
+      top: 20px;
+    }
+
+    .marquee-bottom {
+      bottom: 20px;
+    }
+
+    .marquee {
+      display: flex;
+      align-items: center;
+      height: 100%;
+      animation: scroll-left 15s linear infinite;
+      white-space: nowrap;
+      color: #d3d3d3;
+      font-size: 28px;
+      font-weight: normal;
+      font-family: 'Georgia', serif;
+      letter-spacing: 8px;
+      text-shadow: 0 0 5px rgba(211, 211, 211, 0.5);
+    }
+
+    .marquee-bottom .marquee {
+      animation: scroll-right 15s linear infinite;
+      color: #d3d3d3;
+      text-shadow: 0 0 5px rgba(211, 211, 211, 0.5);
+    }
+
+    @keyframes scroll-left {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+
+    @keyframes scroll-right {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
+    .flower-container {
+      position: relative;
+      width: 300px;
+      height: 400px;
+      z-index: 5;
+    }
+
+    .flowers-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 150px;
+      z-index: 5;
+    }
+
+    .stem {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 8px;
+      height: 0;
+      background: linear-gradient(to top, #228B22, #32CD32);
+      transform: translateX(-50%);
+      border-radius: 4px;
+      animation: grow-stem 2s ease-out forwards;
+    }
+
+    .flower-container:nth-child(1) .stem {
+      animation-delay: 0s;
+    }
+    .flower-container:nth-child(2) .stem {
+      animation-delay: 1s;
+    }
+    .flower-container:nth-child(3) .stem {
+      animation-delay: 2s;
+    }
+
+    @keyframes grow-stem {
+      from { height: 0; }
+      to { height: 180px; }
+    }
+
+    .petal {
+      position: absolute;
+      top: 100px;
+      left: 50%;
+      width: 60px;
+      height: 120px;
+      background: transparent;
+      border: 3px solid #9370db;
+      border-radius: 50%;
+      transform-origin: center bottom;
+      opacity: 0;
+    }
+
+    .petal:nth-child(2) { 
+      animation: bloom-petal-0 0.8s ease-out 3s forwards;
+    }
+    .petal:nth-child(3) { 
+      animation: bloom-petal-40 0.8s ease-out 3.1s forwards;
+    }
+    .petal:nth-child(4) { 
+      animation: bloom-petal-80 0.8s ease-out 3.2s forwards;
+    }
+    .petal:nth-child(5) { 
+      animation: bloom-petal-120 0.8s ease-out 3.3s forwards;
+    }
+    .petal:nth-child(6) { 
+      animation: bloom-petal-160 0.8s ease-out 3.4s forwards;
+    }
+    .petal:nth-child(7) { 
+      animation: bloom-petal-200 0.8s ease-out 3.5s forwards;
+    }
+    .petal:nth-child(8) { 
+      animation: bloom-petal-240 0.8s ease-out 3.6s forwards;
+    }
+    .petal:nth-child(9) { 
+      animation: bloom-petal-280 0.8s ease-out 3.7s forwards;
+    }
+    .petal:nth-child(10) { 
+      animation: bloom-petal-320 0.8s ease-out 3.8s forwards;
+    }
+
+    /* Flor 2 - Delay de 1 segundo */
+    .flower-container:nth-child(2) .petal:nth-child(2) { 
+      animation: bloom-petal-0 0.8s ease-out 4s forwards;
+    }
+    .flower-container:nth-child(2) .petal:nth-child(3) { 
+      animation: bloom-petal-40 0.8s ease-out 4.1s forwards;
+    }
+    .flower-container:nth-child(2) .petal:nth-child(4) { 
+      animation: bloom-petal-80 0.8s ease-out 4.2s forwards;
+    }
+    .flower-container:nth-child(2) .petal:nth-child(5) { 
+      animation: bloom-petal-120 0.8s ease-out 4.3s forwards;
+    }
+    .flower-container:nth-child(2) .petal:nth-child(6) { 
+      animation: bloom-petal-160 0.8s ease-out 4.4s forwards;
+    }
+    .flower-container:nth-child(2) .petal:nth-child(7) { 
+      animation: bloom-petal-200 0.8s ease-out 4.5s forwards;
+    }
+    .flower-container:nth-child(2) .petal:nth-child(8) { 
+      animation: bloom-petal-240 0.8s ease-out 4.6s forwards;
+    }
+    .flower-container:nth-child(2) .petal:nth-child(9) { 
+      animation: bloom-petal-280 0.8s ease-out 4.7s forwards;
+    }
+    .flower-container:nth-child(2) .petal:nth-child(10) { 
+      animation: bloom-petal-320 0.8s ease-out 4.8s forwards;
+    }
+
+    /* Flor 3 - Delay de 2 segundos */
+    .flower-container:nth-child(3) .petal:nth-child(2) { 
+      animation: bloom-petal-0 0.8s ease-out 5s forwards;
+    }
+    .flower-container:nth-child(3) .petal:nth-child(3) { 
+      animation: bloom-petal-40 0.8s ease-out 5.1s forwards;
+    }
+    .flower-container:nth-child(3) .petal:nth-child(4) { 
+      animation: bloom-petal-80 0.8s ease-out 5.2s forwards;
+    }
+    .flower-container:nth-child(3) .petal:nth-child(5) { 
+      animation: bloom-petal-120 0.8s ease-out 5.3s forwards;
+    }
+    .flower-container:nth-child(3) .petal:nth-child(6) { 
+      animation: bloom-petal-160 0.8s ease-out 5.4s forwards;
+    }
+    .flower-container:nth-child(3) .petal:nth-child(7) { 
+      animation: bloom-petal-200 0.8s ease-out 5.5s forwards;
+    }
+    .flower-container:nth-child(3) .petal:nth-child(8) { 
+      animation: bloom-petal-240 0.8s ease-out 5.6s forwards;
+    }
+    .flower-container:nth-child(3) .petal:nth-child(9) { 
+      animation: bloom-petal-280 0.8s ease-out 5.7s forwards;
+    }
+    .flower-container:nth-child(3) .petal:nth-child(10) { 
+      animation: bloom-petal-320 0.8s ease-out 5.8s forwards;
+    }
+
+    @keyframes bloom-petal-0 {
+      from { 
+        transform: translateX(-50%) rotate(0deg) scale(0);
+        opacity: 0;
+      }
+      to { 
+        transform: translateX(-50%) rotate(0deg) scale(1);
+        opacity: 1;
+      }
+    }
+
+    @keyframes bloom-petal-40 {
+      from { 
+        transform: translateX(-50%) rotate(40deg) scale(0);
+        opacity: 0;
+      }
+      to { 
+        transform: translateX(-50%) rotate(40deg) scale(1);
+        opacity: 1;
+      }
+    }
+
+    @keyframes bloom-petal-80 {
+      from { 
+        transform: translateX(-50%) rotate(80deg) scale(0);
+        opacity: 0;
+      }
+      to { 
+        transform: translateX(-50%) rotate(80deg) scale(1);
+        opacity: 1;
+      }
+    }
+
+    @keyframes bloom-petal-120 {
+      from { 
+        transform: translateX(-50%) rotate(120deg) scale(0);
+        opacity: 0;
+      }
+      to { 
+        transform: translateX(-50%) rotate(120deg) scale(1);
+        opacity: 1;
+      }
+    }
+
+    @keyframes bloom-petal-160 {
+      from { 
+        transform: translateX(-50%) rotate(160deg) scale(0);
+        opacity: 0;
+      }
+      to { 
+        transform: translateX(-50%) rotate(160deg) scale(1);
+        opacity: 1;
+      }
+    }
+
+    @keyframes bloom-petal-200 {
+      from { 
+        transform: translateX(-50%) rotate(200deg) scale(0);
+        opacity: 0;
+      }
+      to { 
+        transform: translateX(-50%) rotate(200deg) scale(1);
+        opacity: 1;
+      }
+    }
+
+    @keyframes bloom-petal-240 {
+      from { 
+        transform: translateX(-50%) rotate(240deg) scale(0);
+        opacity: 0;
+      }
+      to { 
+        transform: translateX(-50%) rotate(240deg) scale(1);
+        opacity: 1;
+      }
+    }
+
+    @keyframes bloom-petal-280 {
+      from { 
+        transform: translateX(-50%) rotate(280deg) scale(0);
+        opacity: 0;
+      }
+      to { 
+        transform: translateX(-50%) rotate(280deg) scale(1);
+        opacity: 1;
+      }
+    }
+
+    @keyframes bloom-petal-320 {
+      from { 
+        transform: translateX(-50%) rotate(320deg) scale(0);
+        opacity: 0;
+      }
+      to { 
+        transform: translateX(-50%) rotate(320deg) scale(1);
+        opacity: 1;
+      }
+    }
+
+    .restart-btn {
+      position: absolute;
+      bottom: 120px;
+      background: linear-gradient(45deg, #9370db, #ff69b4);
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      border-radius: 25px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      z-index: 20;
+      transition: transform 0.3s ease;
+      box-shadow: 0 4px 15px rgba(147, 112, 219, 0.4);
+    }
+
+    .restart-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 20px rgba(147, 112, 219, 0.6);
+    }
+
+    .sparkle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: #fff;
+      border-radius: 50%;
+      animation: sparkle 2s infinite;
+    }
+
+    @keyframes sparkle {
+      0%, 100% { opacity: 0; transform: scale(0); }
+      50% { opacity: 1; transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+  <!-- Texto deslizante superior -->
+  <div class="marquee-container marquee-top">
+    <div class="marquee">
+      LAURA   •   LAURA   •   LAURA   •   LAURA   •   LAURA   •   LAURA   •
+    </div>
+  </div>
+
+  <!-- Fila de flores -->
+  <div class="flowers-row">
+    <!-- Flor 1 -->
+    <div class="flower-container">
+      <div class="stem"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+    </div>
+
+    <!-- Flor 2 -->
+    <div class="flower-container">
+      <div class="stem"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+    </div>
+
+    <!-- Flor 3 -->
+    <div class="flower-container">
+      <div class="stem"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+    </div>
+  </div>
+
+  <!-- Texto deslizante inferior -->
+  <div class="marquee-container marquee-bottom">
+    <div class="marquee">
+      LAURA   •   LAURA   •   LAURA   •   LAURA   •   LAURA   •   LAURA   •
+    </div>
+  </div>
+
+  <!-- Botón para reiniciar animación -->
+  <button class="restart-btn" onclick="restartAnimation()">Reiniciar Floración</button>
+
+  <script>
+    function restartAnimation() {
+      // Recargar la página para reiniciar todas las animaciones
+      window.location.reload();
+    }
+
+    // Crear efectos de brillo aleatorios
+    function createSparkles() {
+      for (let i = 0; i < 15; i++) {
+        setTimeout(() => {
+          const sparkle = document.createElement('div');
+          sparkle.className = 'sparkle';
+          sparkle.style.left = Math.random() * 100 + 'vw';
+          sparkle.style.top = Math.random() * 100 + 'vh';
+          sparkle.style.animationDelay = Math.random() * 2 + 's';
+          document.body.appendChild(sparkle);
+          
+          // Remover el brillo después de la animación
+          setTimeout(() => {
+            if (sparkle.parentNode) {
+              sparkle.parentNode.removeChild(sparkle);
+            }
+          }, 2000);
+        }, Math.random() * 5000);
+      }
+    }
+
+    // Iniciar efectos de brillo
+    setTimeout(createSparkles, 3000);
+    
+    // Recrear brillos cada 10 segundos
+    setInterval(createSparkles, 10000);
+  </script>
+</body>
+</html>
